@@ -441,19 +441,24 @@ async def start(client:Client, message):
         file_size = get_size(files.file_size),
         file_caption=files.caption
     )
-    btn = [[
+    btn = [
+    [
         InlineKeyboardButton("⌬ ᴀʟʟ ᴍᴏᴠɪᴇꜱ ᴀᴅᴅᴀ 🎞️", url=CHNL_LNK),
         InlineKeyboardButton("✪ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✪", url='https://t.me/Prime_Botz')
-    ], [
-        InlineKeyboardButton("🔍 𝗧𝗵𝗲 𝗣𝗿𝗶𝗺𝗲 𝗠𝗼𝘃𝗶𝗲𝘀 𝗥𝗲𝗾𝘂𝗲𝘀𝘁 𝗚𝗿𝗼𝘂𝗽 🔎", url=GRP_LNK)
-    ], [
-        InlineKeyboardButton("🚀 Fast Download & Watch Online 🖥️", callback_data=f'stream#{file.file_id}')
-    ]]
-    toDel=await client.send_cached_media(
-        chat_id=message.from_user.id,
-        file_id=file_id,
-        caption=f_caption,
-        reply_markup=InlineKeyboardMarkup(btn)
+    ],
+    [
+        InlineKeyboardButton("🔍 𝗧𝗵𝗘 𝗣𝗿𝗶𝗺𝗲 𝗠𝗼𝘃𝗶𝗲𝘀 𝗥𝗲𝗾𝘂𝗲𝘀𝘁 𝗚𝗿𝗼𝘂𝗽 🔎", url=GRP_LNK)
+    ],
+    [
+        InlineKeyboardButton("🚀 Fast Download & Watch online 🖥️", callback_data=f'stream#{file_id}')
+    ]
+]
+
+toDel = await client.send_cached_media(
+    chat_id=message.from_user.id,
+    file_id=file_id,
+    caption=f_caption,
+    reply_markup=InlineKeyboardMarkup(btn)
     )
     delCap = "<b><u>❗️❗️❗️IMPORTANT❗️️❗️❗️</u></b>\n\nThis Movie File/Video will be deleted in <b><u> {} </u> 🫥 <i></b>(Due to Copyright Issues)</i>.\n\n<b><i>Please forward this File/Video to your Saved Messages and Start Download there</i></b>".format(f'{FILE_AUTO_DEL_TIMER / 60} ᴍɪɴᴜᴛᴇs' if FILE_AUTO_DEL_TIMER >= 60 else f'{FILE_AUTO_DEL_TIMER} sᴇᴄᴏɴᴅs')
     afterDelCap = "<b>ʏᴏᴜʀ ғɪʟᴇ ɪs ᴅᴇʟᴇᴛᴇᴅ ᴀғᴛᴇʀ {} ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ ᴠɪᴏʟᴀᴛɪᴏɴs!\nIf you want that file again, you can search again</b>".format(f'{FILE_AUTO_DEL_TIMER / 60} ᴍɪɴᴜᴛᴇs' if FILE_AUTO_DEL_TIMER >= 60 else f'{FILE_AUTO_DEL_TIMER} sᴇᴄᴏɴᴅs') 
