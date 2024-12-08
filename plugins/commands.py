@@ -397,8 +397,8 @@ async def start(client:Client, message):
                 file_caption=file.caption
             )
             btn = [[
-                InlineKeyboardButton("⌬ Aʟʟ Mᴏᴠɪᴇs Cʜᴀɴɴᴇʟ", url=f'https://t.me/{SUPPORT_CHAT}'),
-                InlineKeyboardButton("✪ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✪", url=CHNL_LNK)
+                InlineKeyboardButton("⌬ ᴀʟʟ ᴍᴏᴠɪᴇꜱ ᴀᴅᴅᴀ 🎞️", url=CHNL_LNK),
+                InlineKeyboardButton("✪ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✪", url='https://t.me/Prime_Botz')
             ], [
                 InlineKeyboardButton("🔍 𝗧𝗵𝗲 𝗣𝗿𝗶𝗺𝗲 𝗠𝗼𝘃𝗶𝗲𝘀 𝗥𝗲𝗾𝘂𝗲𝘀𝘁 𝗚𝗿𝗼𝘂𝗽 🔎", url=GRP_LNK)
             ], [
@@ -442,7 +442,12 @@ async def start(client:Client, message):
         file_caption=files.caption
     )
     btn = [[
-        InlineKeyboardButton("🚀 Fast Download & Watch online 🖥️", callback_data=f'stream#{file_id}')
+        InlineKeyboardButton("⌬ ᴀʟʟ ᴍᴏᴠɪᴇꜱ ᴀᴅᴅᴀ 🎞️", url=CHNL_LNK),
+        InlineKeyboardButton("✪ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✪", url='https://t.me/Prime_Botz')
+    ], [
+        InlineKeyboardButton("🔍 𝗧𝗵𝗲 𝗣𝗿𝗶𝗺𝗲 𝗠𝗼𝘃𝗶𝗲𝘀 𝗥𝗲𝗾𝘂𝗲𝘀𝘁 𝗚𝗿𝗼𝘂𝗽 🔎", url=GRP_LNK)
+    ], [
+        InlineKeyboardButton("🚀 Fast Download & Watch Online 🖥️", callback_data=f'stream#{file.file_id}')
     ]]
     toDel=await client.send_cached_media(
         chat_id=message.from_user.id,
