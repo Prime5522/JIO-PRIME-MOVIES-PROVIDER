@@ -117,13 +117,13 @@ User - {}
 ⭐ Rating: {rating} / 10</b>
 🔥 POWERED BY @Prime_Botz 🔥"""
 
-    FILE_CAPTION = """<b>⚡File uploaded by [𝐏𝐑𝐈𝐌𝐄 𝐌𝐎𝐕𝐈𝐄 ✨](https://t.me/Prime_Movies4U)</b>⚡\n\n📂 Fɪʟᴇɴᴀᴍᴇ : <i><a href='https://telegram.me/Prime_Movies4U'>{file_name}</a></i>\n\n\n» 𝗠𝗼𝘃𝗶𝗲𝘀 𝗥𝗲𝗾𝘂𝗲𝘀𝘁 𝗚𝗿𝗼𝘂𝗽 ➠ <a href=https://t.me/+OG3sftDEbZ9kMzFl>𝐏𝐑𝐈𝐌𝐄 𝐑𝐄𝐐𝐔𝐄𝐒𝐓 𝐆𝐑𝐎𝐔𝐏 𝟐𝟒×𝟕 🔎</a>\n\n» 𝗡𝗘𝗪 𝗠𝗢𝗩𝗜𝗘𝗦 ➠ <a href=https://t.me/+NO6RGoj16Fw2Njc9>𝐏𝐑𝐈𝐌𝐄 𝐌𝐎𝐕𝐈𝐄𝐒 𝐀𝐃𝐃𝐀 🌟</a>\n\n\n» 𝗣𝗢𝗪𝗘𝗥𝗘𝗗 𝗕𝗬 : <a href=https://t.me/Prime_Botz>𝐏𝐑𝐈𝐌𝐄 𝐁𝐎𝐓𝐳 🔥</a></i></b>"""
+    FILE_CAPTION = """<b>⚡File uploaded by [𝐏𝐑𝐈𝐌𝐄 𝐌𝐎𝐕𝐈𝐄 ✨](https://t.me/Prime_Movies4U)</b>⚡\n\n📂 Fɪʟᴇɴᴀᴍᴇ : <i><a href='https://telegram.me/Prime_Movies4U'>{file_name}</a></i>\n\n\n» 𝗠𝗼𝘃𝗶𝗲𝘀 𝗥𝗲𝗾𝘂𝗲𝘀𝘁 𝗚𝗿𝗼𝘂𝗽 ➠ <a href=https://t.me/Prime_Movies4U/143>𝐏𝐑𝐈𝐌𝐄 𝐑𝐄𝐐𝐔𝐄𝐒𝐓 𝐆𝐑𝐎𝐔𝐏 𝟐𝟒×𝟕 🔎</a>\n\n» 𝗡𝗘𝗪 𝗠𝗢𝗩𝗜𝗘𝗦 ➠ <a href=https://t.me/Prime_Movies4U/153>𝐏𝐑𝐈𝐌𝐄 𝐌𝐎𝐕𝐈𝐄𝐒 𝐀𝐃𝐃𝐀 🌟</a>\n\n\n» 𝗣𝗢𝗪𝗘𝗥𝗘𝗗 𝗕𝗬 : <a href=https://t.me/Prime_Botz>𝐏𝐑𝐈𝐌𝐄 𝐁𝐎𝐓𝐳 🔥</a></i></b>"""
 
     ALRT_TXT = """THIS IS NOT YOUR REQUEST❕PLEASE REQUEST YOURS.\nএটা আপনার রিকোয়েস্ট না এর জন্য আপনার নিজের রিকুয়েস্ট করতে হবে 😉!"""
 
     OLD_ALRT_TXT = """ʏᴏᴜ ᴀʀᴇ ᴜsɪɴɢ ᴍʏ ᴏʟᴅ ᴍᴇssᴀɢᴇs..sᴇɴᴅ ᴀ ɴᴇᴡ ʀᴇǫᴜᴇsᴛ.."""
 
-    NO_RESULT_TXT = """<b>ᴛʜɪs ᴍᴇssᴀɢᴇ ɪs ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ᴏʀ ᴀᴅᴅᴇᴅ ɪɴ ᴍʏ ᴅᴀᴛᴀʙᴀsᴇ 🙄\n আপনি আমাদের গ্রুপে রিকোয়েস্ট করতে পারেন \n➠ <a href=https://t.me/+OG3sftDEbZ9kMzFl>𝐏𝐑𝐈𝐌𝐄 𝐑𝐄𝐐𝐔𝐄𝐒𝐓 𝐆𝐑𝐎𝐔𝐏</a>\nআর আপনি যদি রিকোয়েস্ট গ্রুপ থেকে রিকোয়েস্ট করে থাকেন তাহলে কিছুক্ষণ অপেক্ষা করুন অ্যাড করে দেওয়া হবে । আর আপনি বানানটাও চেক করেন আপনার</b>"""
+    NO_RESULT_TXT = """<b>ᴛʜɪs ᴍᴇssᴀɢᴇ ɪs ɴᴏᴛ ʀᴇʟᴇᴀsᴇᴅ ᴏʀ ᴀᴅᴅᴇᴅ ɪɴ ᴍʏ ᴅᴀᴛᴀʙᴀsᴇ 🙄\n আপনি আমাদের গ্রুপে রিকোয়েস্ট করতে পারেন \n➠ <a href=https://t.me/Prime_Movies4U/143>𝐏𝐑𝐈𝐌𝐄 𝐑𝐄𝐐𝐔𝐄𝐒𝐓 𝐆𝐑𝐎𝐔𝐏</a>\nআর আপনি যদি রিকোয়েস্ট গ্রুপ থেকে রিকোয়েস্ট করে থাকেন তাহলে কিছুক্ষণ অপেক্ষা করুন অ্যাড করে দেওয়া হবে । আর আপনি বানানটাও চেক করেন আপনার</b>"""
     
     I_CUDNT = """🤧 𝗛𝗲𝗹𝗹𝗼 {}
 
