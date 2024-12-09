@@ -1379,21 +1379,58 @@ async def cb_handler(client: Client, query: CallbackQuery):
         else:
             await query.answer(script.ALRT_TXT, show_alert=True)
 
-    elif query.data.startswith("upload_alert"):
-        ident, user_id = query.data.split("#")
-        userid = query.from_user.id
-        if str(userid) in user_id:
-            await query.answer("ʏᴏᴜʀ ʀᴇǫᴜᴇꜱᴛ ᴡɪʟʟ ʙᴇ ᴜᴘʟᴏᴀᴅᴇᴅ ᴡɪᴛʜɪɴ 1 ʜᴏᴜʀ 😁", show_alert=True)
-        else:
-            await query.answer(script.ALRT_TXT, show_alert=True)
-
-    elif query.data.startswith("yrs_alert"):
-        ident, user_id = query.data.split("#")
-        userid = query.from_user.id
-        if str(userid) in user_id:
-            await query.answer("ʙʀᴏ ᴘʟᴇᴀꜱᴇ ᴛᴇʟʟ ᴍᴇ ʏᴇᴀʀꜱ ᴀɴᴅ ʟᴀɴɢᴜᴀɢᴇ, ᴛʜᴇɴ ɪ ᴡɪʟʟ ᴜᴘʟᴏᴀᴅ 😬", show_alert=True)
-        else:
-            await query.answer(script.ALRT_TXT, show_alert=True)
+    elif data.startswith("notify_user_custom"):
+        _, user_id, movie = data.split(":")
+        # Send message to user
+        try:
+            btn = [[
+                InlineKeyboardButton(text=f"🔍 Sᴇᴀʀᴄʜ 🇭​​​​​🇪​​​​​🇷​​​​​🇪​​​​​ 🔎", url=f"https://telegram.me/{MOVIE_GROUP_USERNAME}")
+            ],[
+                InlineKeyboardButton(text=f"🐞 ══• ʀᴇᴘᴏʀᴛ ɪꜱꜱᴜᴇ •══ 🐞", url=f"https://telegram.me/LazyDeveloperSupport")
+            ]]
+            btn_lzdv = [
+                [
+                InlineKeyboardButton(text=f"🗑 Delete Log ❌", callback_data = "close_data")
+                ]]
+            reply_markup_lzdv = InlineKeyboardMarkup(btn_lzdv) 
+            reply_markup = InlineKeyboardMarkup(btn)
+            await client.send_message(int(user_id), f"🌍 Your spelling matters.\nThe requested content `{movie}` is available in our database, You were unable to get it because of your spelling mistake.🧐 Please make sure you've spelled correctly while searching content in group...\n\n❤Thank u for supporting us.", reply_markup=reply_markup)
+            await query.edit_message_text(text=f"- __**User notified successfully sweetie...✅**__\n\n⏳**Status** : Spelling error 🖊.\n🪪**UserID** : `{user_id}`\n🎞**Content** : `{movie}`\n\n\n🦋",reply_markup=reply_markup_lzdv)
+        # Delete callback query message
+            await query.answer()
+            await query.delete()
+        except Exception as e:
+            print(e)  # print the error message
+            await query.answer(f"☣something went wrong sweetie\n\n{e}", show_alert=True)
+            return
+    
+    elif data.startswith("notify_user_req_rcvd"):
+        _, user_id, movie = data.split(":")
+        # Send message to user
+        try:
+            btn = [[
+                InlineKeyboardButton(text=f"💛 Request More 💛", url=f"https://telegram.me/{MOVIE_GROUP_USERNAME}")
+            ],[
+                InlineKeyboardButton(text=f"🐞 ══• ʀᴇᴘᴏʀᴛ ɪꜱꜱᴜᴇ •══ 🐞", url=f"https://telegram.me/LazyDeveloperSupport")
+            ]]
+            btn_lzdv = [
+                        [InlineKeyboardButton(text=f"♻ ̶R̶e̶q̶u̶e̶s̶t̶ ̶R̶e̶c̶i̶e̶v̶e̶d ♻", callback_data=f"notify_user_req_rcvd:{user_id}:{movie}")],
+                        [InlineKeyboardButton(text=f"✅Upload Done", callback_data=f"notify_userupl:{user_id}:{movie}")],
+                        [InlineKeyboardButton(text=f"⚡Already Upl..", callback_data=f"notify_user_alrupl:{user_id}:{movie}"),InlineKeyboardButton("🖊Spell Error", callback_data=f"notify_user_spelling_error:{user_id}:{movie}")],
+                        [InlineKeyboardButton(text=f"😒Not Available", callback_data=f"notify_user_not_avail:{user_id}:{movie}"),InlineKeyboardButton("📃Write Reply", callback_data=f"notify_user_custom:{user_id}:{movie}")],
+                        [InlineKeyboardButton("❌Reject Req", callback_data=f"notify_user_req_rejected:{user_id}:{movie}")]
+                       ]
+            reply_markup_lzdv = InlineKeyboardMarkup(btn_lzdv)
+            reply_markup = InlineKeyboardMarkup(btn)
+            await client.send_message(int(user_id), f"💞Hello sweetheart ! we have recieved your request for  `{movie}`... \n\nPlease keep some patience, we will upload it as soon as possible. \n❤ Thank u for your Love .❤", reply_markup=reply_markup)
+            await query.edit_message_text(text=f"- __**User notified successfully sweetie...✅**__\n\n⏳**Status** : Request Recieved 🖊.\n🪪**UserID** : `{user_id}`\n🎞**Content** : `{movie}`\n\n\n🦋",reply_markup=reply_markup_lzdv)
+        # Delete callback query message
+            await query.answer()
+            await query.delete()
+        except Exception as e:
+            print(e)  # print the error message
+            await query.answer(f"☣something went wrong sweetie\n\n{e}", show_alert=True)
+            return
 
     elif query.data.startswith("batchfiles"):
         ident, group_id, message_id, user = query.data.split("#")
@@ -1406,6 +1443,34 @@ async def cb_handler(client: Client, query: CallbackQuery):
         link = f"https://telegram.me/{temp.U_NAME}?start=allfiles_{group_id}-{message_id}"
         await query.answer(url=link)
         return
+	    
+    elif query.data == "select_info":
+        await query.answer('Please select anything from above menu to filter files eg: Language, Season, Quality', show_alert=True)
+       
+    elif query.data == "read_in_hin":
+        await query.answer("• सही वर्तनी में पूछें।\n• ओटीटी प्लेटफॉर्म पर रिलीज़ न हुई फिल्मों के बारे में न पूछें।\n• संभवतः [मूवी का नाम भाषा] इस तरह पूछें।", show_alert=True)
+    
+    elif query.data == "read_in_eng":
+        await query.answer("• Ask in correct spelling.\n• Don't ask for movies which are not released on OTT platforms.\n• Possible ask [ Movies name language] like this.", show_alert=True)
+    
+    elif query.data == "read_in_mal":
+        await query.answer('• ശരിയായ അക്ഷരവിന്യാസത്തിൽ ചോദിക്കുക.\n• OTT പ്ലാറ്റ്‌ഫോമിൽ റിലീസ് ചെയ്യാത്ത സിനിമകൾ ചോദിക്കരുത്.\n• ഇതുപോലെ [സിനിമയുടെ പേര് ഭാഷ] ചോദിക്കാം.', show_alert=True)
+    
+    elif query.data == "read_in_tam":
+        await query.answer('சரியான எழுத்துப்பிழையில் கேளுங்கள்.\nOTT பிளாட்ஃபார்மில் வெளியாகாத திரைப்படங்களைக் கேட்காதீர்கள்.\n• இப்படி [படத்தின் பெயர் மொழி] கேட்கலாம்.', show_alert=True)
+    
+    elif query.data == "read_in_tel":
+        await query.answer('సరైన స్పెల్లింగ్‌లో అడగండి.\nOTT ప్లాట్‌ఫారమ్‌లో విడుదల చేయని సినిమాల కోసం అడగవద్దు.\n• ఇలా [సినిమా పేరు భాష] అడగవచ్చు.', show_alert=True)
+    
+    elif query.data == "read_in_urd":
+        await query.answer('صحیح ہجے میں پوچھیں۔ •\nOTT پلیٹ فارم پر ریلیز نہ ہونے والی فلموں کے بارے میں مت پوچھیں۔ •\nممکنہ پوچھیں [ فلم کے نام کی زبان] اس طرح۔ •', show_alert=True)
+    
+    elif query.data == "read_in_san":
+        await query.answer('• सम्यक् वर्तनीरूपेण पृच्छन्तु।\• OTT मञ्चे न विमोचितानि चलच्चित्राणि मा याचयन्तु।\n• संभवं [ Movie name language] इत्येतत् पृच्छन्तु।', show_alert=True)
+    
+    elif query.data == "select_option":
+        await query.answer('👇👇 Please select anyone of the following  options 👇👇', show_alert=True)
+        
 	    
 async def ai_spell_check(wrong_name):
     async def search_movie(wrong_name):
@@ -1450,21 +1515,37 @@ async def auto_filter(client, msg, spoll=False, pm_mode=False):
         query = msg
         
         if not files:
-    await client.send_message(
-        req_channel,
-        f"-🦋 #REQUESTED_CONTENT 🦋-\n\n📝**Content Name** :`{search}`\n**Requested By**: {message.from_user.first_name}\n **USER ID**:{user_id}\n\n🗃️"
-    )
-    if settings["spell_check"]:
-        ai_sts = await msg.reply_text('ᴄʜᴇᴄᴋɪɴɢ ʏᴏᴜʀ sᴘᴇʟʟɪɴɢ...')
-        is_misspelled = await ai_spell_check(search)
-        if is_misspelled:
-            await asyncio.sleep(2)
-            msg.text = is_misspelled
-            await ai_sts.delete()
-            return await auto_filter(client, msg)
-        await ai_sts.delete()
-        return await advantage_spell_chok(msg)
-    return
+                # Generate the search URL
+                generated_link = f"https://google.com/search?q={quote(search)}"
+                await client.send_message(req_channel,f"-🦋 #REQUESTED_CONTENT 🦋-\n\n📝**Content Name** :`{search}`\n**Requested By**: {message.from_user.first_name}\n **USER ID**:{user_id}\n\n🗃️",
+                                                                                                       reply_markup=InlineKeyboardMarkup([
+                                                                                                                                        [InlineKeyboardButton(text=f"🤞Request Recieved", callback_data=f"notify_user_req_rcvd:{user_id}:{requested_movie}")],
+                                                                                                                                        [InlineKeyboardButton(text=f"✅Upload Done", callback_data=f"notify_userupl:{user_id}:{requested_movie}")],
+                                                                                                                                        [InlineKeyboardButton(text=f"⚡Already Upl..", callback_data=f"notify_user_alrupl:{user_id}:{requested_movie}"),InlineKeyboardButton("🖊Spell Error", callback_data=f"notify_user_spelling_error:{user_id}:{requested_movie}")],
+                                                                                                                                        [InlineKeyboardButton(text=f"😒Not Available", callback_data=f"notify_user_not_avail:{user_id}:{requested_movie}")],
+                                                                                                                                        [InlineKeyboardButton("❌Reject Req", callback_data=f"notify_user_req_rejected:{user_id}:{requested_movie}")]
+                                                                                                                                        ]))
+                
+                l = await message.reply_text(text=f"△ HeY `{message.from_user.first_name}`🥰,\nI ᴄᴏᴜʟᴅɴ'ᴛ ғɪɴᴅ ᴀɴʏᴛʜɪɴɢ ʀᴇʟᴀᴛᴇᴅ ᴛᴏ ʏᴏᴜʀ ʀᴇᴏ̨ᴜᴇsᴛ.🤧\n>Tʀʏ ʀᴇᴀᴅɪɴɢ ᴛʜᴇ ɪɴsᴛʀᴜᴄᴛɪᴏɴs ʙᴇʟᴏᴡ 👇",
+                                                                                                       reply_markup=InlineKeyboardMarkup([
+                                                                                                                                        [ InlineKeyboardButton("HIN", callback_data="read_in_hin"),
+                                                                                                                                          InlineKeyboardButton("ENG", callback_data="read_in_eng"),
+                                                                                                                                          InlineKeyboardButton("MAL", callback_data="read_in_mal"),
+                                                                                                                                          InlineKeyboardButton("TAM", callback_data="read_in_tam")
+                                                                                                                                        ],[
+                                                                                                                                          InlineKeyboardButton("Sanskrit", callback_data="read_in_san"),
+                                                                                                                                          InlineKeyboardButton("Urdu", callback_data="read_in_urd")
+                                                                                                                                        ],
+                                                                                                                                        [ InlineKeyboardButton("═• Search name on google​ •═", url=generated_link)],
+                                                                                                                                        ]))
+                await asyncio.sleep(60)
+                await l.delete()    
+                if settings["spell_check"]:
+                    return await advantage_spell_chok(msg)
+                else:
+                    return
+        else: 
+            return
     else:
         settings = await get_settings(msg.message.chat.id , pm_mode=pm_mode)
         message = msg.message.reply_to_message  # msg will be callback query
