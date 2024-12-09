@@ -347,37 +347,25 @@ async def start(client:Client, message):
 
     user_id = m.from_user.id
     if not await db.has_premium_access(user_id):
-        grp_id = int(grp_id)
-        user_verified = await db.is_user_verified(user_id)
-        settings = await get_settings(grp_id , pm_mode=pm_mode)
-        is_second_shortener = await db.use_second_shortener(user_id, settings.get('verify_time', TWO_VERIFY_GAP)) 
-        is_third_shortener = await db.use_third_shortener(user_id, settings.get('third_verify_time', THREE_VERIFY_GAP))
-        if settings.get("is_verify", IS_VERIFY) and not user_verified or is_second_shortener or is_third_shortener:
-            verify_id = ''.join(random.choices(string.ascii_uppercase + string.digits, k=7))
-            await db.create_verify_id(user_id, verify_id)
-            temp.CHAT[user_id] = grp_id
-            verify = await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=notcopy_{user_id}_{verify_id}_{file_id}", grp_id, is_second_shortener, is_third_shortener , pm_mode=pm_mode)
-            buttons = [[
-                InlineKeyboardButton(text="✅ ᴠᴇʀɪғʏ ✅", url=verify),
-                InlineKeyboardButton(text="❔ʜᴏᴡ ᴛᴏ ᴠᴇʀɪғʏ❓", url=settings['tutorial'])
-                ],[
-                InlineKeyboardButton(text="⭐ 𝗥𝗲𝗺𝗼𝘃𝗲 𝗔𝗱𝘀 𝗚𝗲𝘁 𝗗𝗶𝗿𝗲𝗰𝘁 𝗙𝗶𝗹𝗲 ⭐", callback_data='seeplans'),
-            ]]
-            reply_markup=InlineKeyboardMarkup(buttons)
-            if await db.user_verified(user_id): 
-                msg = script.THIRDT_VERIFICATION_TEXT
-            else:            
-                msg = script.SECOND_VERIFICATION_TEXT if is_second_shortener else script.VERIFICATION_TEXT
-            d = await m.reply_text(
-                text=msg.format(message.from_user.mention, get_status()),
-                protect_content = False,
-                reply_markup=reply_markup,
-                parse_mode=enums.ParseMode.HTML
+        chat_id = int("-" + file_id.split("-")[1])
+        userid = message.from_user.id if message.from_user else None
+        settings = await get_settings(chat_id)
+        g = await get_shortlink(chat_id, f"https://telegram.me/{temp.U_NAME}?start=allfiles_{file_id}")
+        k = await client.send_message(chat_id=message.from_user.id,text=f"<b>Get All Files in a Single Click!!!\n\n📂 ʟɪɴᴋ ➠ : {g}\n\n<i>Note: This message is deleted in 5 mins to avoid copyrights. Save the link to Somewhere else</i></b>", reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton('📂 Dᴏᴡɴʟᴏᴀᴅ Nᴏᴡ 📂', url=g)
+                    ], [
+                        InlineKeyboardButton('⁉️ Hᴏᴡ Tᴏ Dᴏᴡɴʟᴏᴀᴅ ⁉️', url=settings['tutorial'])
+                    ], [
+                        InlineKeyboardButton('⭐ 𝗥𝗲𝗺𝗼𝘃𝗲 𝗔𝗱𝘀 𝗚𝗲𝘁 𝗗𝗶𝗿𝗲𝗰𝘁 𝗙𝗶𝗹𝗲 ⭐', callback_data="seeplans")
+                    ]
+                ]
             )
-            await asyncio.sleep(300) 
-            await d.delete()
-            await m.delete()
-            return
+        )
+        await asyncio.sleep(300)
+        await k.edit("<b>Your message is successfully deleted!!!</b>")
+        return
 
     if data and data.startswith("allfiles"):
         _, key = data.split("_", 1)
