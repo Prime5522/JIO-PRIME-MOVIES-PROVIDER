@@ -17,10 +17,12 @@ lock = asyncio.Lock()
 from .Extra.checkFsub import is_user_fsub
 import traceback
 from fuzzywuzzy import process
+import os 
 BUTTONS = {}
 FILES_ID = {}
 CAP = {}
 
+req_channel = int(os.environ.get('REQ_CHANNEL','-1002120012639'))
 # zishan [
 from database.jsreferdb import referdb
 from database.config_db import mdb
