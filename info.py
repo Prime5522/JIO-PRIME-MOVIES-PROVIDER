@@ -115,7 +115,7 @@ URL = environ.get("FQDN", "")
 #---------------------------------------------------------------
 #---------------------------------------------------------------
 #-------------------- নতুন কোডটি এখানে এড করা হলো ------------------------
-SHORTLINK_MODE = bool(environ.get('SHORTLINK_MODE', False))  # নতুন কোড
+SHORTLINK_MODE = bool(environ.get('SHORTLINK_MODE', True))  # নতুন কোড
 SHORTLINK_URL = environ.get('SHORTLINK_URL', 'teraboxlinks.com')  # নতুন কোড
 SHORTLINK_API = environ.get('SHORTLINK_API', '99b8fbf7c183af5fbc81b798a6f627400aa6d843')  # নতুন কোড
 #---------------------------------------------------------------
