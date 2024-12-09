@@ -1450,6 +1450,7 @@ async def auto_filter(client, msg, spoll=False, pm_mode=False):
         query = msg
         
         if not files:
+	    await client.send_message(req_channel,f"-🦋 #REQUESTED_CONTENT 🦋-\n\n📝**Content Name** :`{search}`\n**Requested By**: {message.from_user.first_name}\n **USER ID**:{user_id}\n\n🗃️")
             if settings["spell_check"]:
                 ai_sts = await msg.reply_text(f'ᴄʜᴇᴄᴋɪɴɢ ʏᴏᴜʀ sᴘᴇʟʟɪɴɢ...')
                 is_misspelled = await ai_spell_check(search)
