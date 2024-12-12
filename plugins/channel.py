@@ -46,6 +46,45 @@ async def check_qualities(text, qualities: list):
     quality = ", ".join(quality)
     return quality[:-2] if quality.endswith(", ") else quality
 
+async def detect_season_and_episode(caption, file_name):
+    """
+    Improved regex patterns and matching with custom seasons and episodes.
+    Defaults to 'Not Sure' if detection fails.
+    """
+    
+    # Custom Seasons and Episodes Lists
+    seasons = [
+    "S01", "S02", "S03", "S04", "S05", "S06", "S07", "S08", "S09", "S10",
+    "Season 1", "Season 2", "Season 3", "Season 4", "Season 5", "Season 6",
+    "Season 01", "Season 02", "Season 03", "Season 04", "Season 05", "Season 06",
+    "Se01", "Se02", "Se03", "Se04", "Se05", "Se06", "Se07", "Se08", "Se09", "Se10",
+    "S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10",
+    "[S01]", "[S02]", "[S03]", "[S04]", "[S05]", "[S06]", "[S07]", "[S08]", "[S09]", "[S10]",
+    "01x01", "02x01", "03x01", "04x01", "05x01", "06x01", "07x01", "08x01", "09x01", "10x01"]
+    episodes = [
+    "E01", "E02", "E03", "E04", "E05", "E06", "E07", "E08", "E09", "E10",
+    "Episode 1", "Episode 2", "Episode 3", "Episode 4", "Episode 5", "Episode 6", "Episode 7", "Episode 8", "Episode 9", "Episode 10",
+    "Ep 1", "Ep 2", "Ep 3", "Ep 4", "Ep 5", "Ep 6", "Ep 7", "Ep 8", "Ep 9", "Ep 10",
+    "[E01]", "[E02]", "[E03]", "[E04]", "[E05]", "[E06]", "[E07]", "[E08]", "[E09]", "[E10]",
+    "1x01", "1x02", "2x01", "2x02", "3x01", "3x02", "4x01", "4x02", "5x01", "5x02",
+    "S01E01", "S01E02", "S02E01", "S02E02", "S03E01", "S03E02", "S04E01", "S04E02", "S05E01", "S05E02",
+    "Se01E01", "Se01E02", "Se02E01", "Se02E02", "Se03E01", "Se03E02", "Se04E01", "Se04E02",
+    "1x1", "1x2", "2x1", "2x2", "3x3", "4x3", "5x1", "5x2", "6x1", "6x2"]
+
+    # Regex Matching Logic
+    season_detected = "Not Sure"
+    episode_detected = "Not Sure"
+    
+    for season in seasons:
+        if season.lower() in caption.lower() or season.lower() in file_name.lower():
+            season_detected = season
+
+    for ep in episodes:
+        if ep.lower() in caption.lower() or ep.lower() in file_name.lower():
+            episode_detected = ep
+
+    return season_detected, episode_detected
+
 async def send_movie_updates(bot, file_name, caption, file_id):
     try:
         year_match = re.search(r"\b(19|20)\d{2}\b", caption)
@@ -78,6 +117,9 @@ async def send_movie_updates(bot, file_name, caption, file_id):
             return 
         processed_movies.add(movie_name)
         
+        # Detect Season and Episode
+        season, episode = await detect_season_and_episode(caption, file_name)
+        
         poster_url, title, genres, release_date, rating = await get_imdb(movie_name)
         
         caption_message = (
@@ -86,7 +128,9 @@ async def send_movie_updates(bot, file_name, caption, file_id):
             f"📆 <b>Year:</b> {release_date or 'Unknown'}\n"
             f"⭐ <b>IMDb Rating:</b> {rating or 'N/A'} / 10\n\n"
             f"🔊 <b>Language:</b> {language}\n"
-            f"💿 <b>Quality:</b> {quality}\n\n"
+            f"💿 <b>Quality:</b> {quality}\n"
+            f"📺 <b>Season:</b> {season}\n"
+            f"🎞 <b>Episode:</b> {episode}\n\n"
             f"📌 <b>𝗡𝗼𝘁𝗲:</b> 𝙄𝙛 𝙮𝙤𝙪 𝙣𝙚𝙚𝙙 𝙩𝙤 𝙜𝙚𝙩 𝙖𝙡𝙡 𝙦𝙪𝙖𝙡𝙞𝙩𝙮 𝙛𝙞𝙡𝙚𝙨, 𝙥𝙡𝙚𝙖𝙨𝙚 𝙘𝙤𝙥𝙮 𝙩𝙝𝙚 𝙖𝙗𝙤𝙫𝙚 𝙛𝙞𝙡𝙚 𝙣𝙖𝙢𝙚 𝙖𝙣𝙙 𝙥𝙖𝙨𝙩𝙚 𝙞𝙩 𝙞𝙣𝙩𝙤 𝙩𝙝𝙚 𝙗𝙚𝙡𝙤𝙬 𝙢𝙤𝙫𝙞𝙚 𝙨𝙚𝙖𝙧𝙘𝙝 𝙜𝙧𝙤𝙪𝙥 🔰.\n\n"
             f"🎥 <b>𝗗𝗼𝘄𝗻𝗹𝗼𝗮𝗱 𝗟𝗶𝗻𝗸:</b> 𝘾𝙡𝙞𝙘𝙠 𝙩𝙝𝙚 𝙗𝙪𝙩𝙩𝙤𝙣 𝙗𝙚𝙡𝙤𝙬 𝙩𝙤 𝙜𝙚𝙩 𝙩𝙝𝙚 𝙛𝙞𝙡𝙚 📂!"
         )
