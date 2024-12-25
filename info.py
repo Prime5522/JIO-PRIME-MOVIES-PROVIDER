@@ -12,7 +12,7 @@ def is_enabled(value, default):
         return default
 #---------------------------------------------------------------
 #---------------------------------------------------------------         ,
-SESSION = environ.get('SESSION', 'Media_search')
+SESSION = environ.get('SESSION', 'Prime_Botz')
 API_ID = int(environ.get('API_ID', ''))
 API_HASH = environ.get('API_HASH', '')
 BOT_TOKEN = environ.get('BOT_TOKEN', '')
@@ -21,7 +21,7 @@ BOT_TOKEN = environ.get('BOT_TOKEN', '')
 ADMINS = [int(admin) if id_pattern.search(admin) else admin for admin in environ.get('ADMINS', '5926160191').split()]
 USERNAME = environ.get('USERNAME', "https://t.me/Prime_Admin_Nayem") # ADMIN USERNAME
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', '-1002196408894'))
-MOVIE_GROUP_LINK = environ.get('MOVIE_GROUP_LINK', '')
+MOVIE_GROUP_LINK = environ.get('MOVIE_GROUP_LINK', 'https://t.me/+OG3sftDEbZ9kMzFl')
 CHANNELS = [int(ch) if id_pattern.search(ch) else ch for ch in environ.get('CHANNELS', '-1002082665507').split()]
 #---------------------------------------------------------------
 #---------------------------------------------------------------
@@ -42,7 +42,7 @@ LOG_VR_CHANNEL = int(environ.get('LOG_VR_CHANNEL', '-1002196408894'))
 auth_channel = environ.get('AUTH_CHANNEL', '-1002245813234')
 SUPPORT_GROUP = int(environ.get('SUPPORT_GROUP', '-1002245813234'))
 request_channel = environ.get('REQUEST_CHANNEL', '-1002296355008')
-MOVIE_UPDATE_CHANNEL = int(environ.get('MOVIE_UPDATE_CHANNEL', ''))
+MOVIE_UPDATE_CHANNEL = int(environ.get('MOVIE_UPDATE_CHANNEL', '-100'))
 SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'https://t.me/Prime_Botz_Support') #Support group link ( make sure bot is admin )
 #---------------------------------------------------------------
 #---------------------------------------------------------------
