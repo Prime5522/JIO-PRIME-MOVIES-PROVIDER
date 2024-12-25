@@ -117,15 +117,15 @@ User - {}
 ⭐ Rating: {rating} / 10</b>
 🔥 POWERED BY @Prime_Botz 🔥"""
 
-    FILE_CAPTION = """📂 <b>Filename:</b> <a href='{https://t.me/Prime_Movies4U}'>{file_name}</a>
+    FILE_CAPTION = """📂 <b>Filename:</b> <a href='https://t.me/Prime_Movies4U'>{file_name}</a>
 
 •────•────────•────•
 📌 <b>ʀᴇǫᴜᴇsᴛ ɢʀᴏᴜᴘ :</b> <a href='https://t.me/Prime_Movies4U/143'>ᴄʟɪᴄᴋ ʜᴇʀᴇ</a>
 🎬 <b>ᴍᴏᴠɪᴇs ᴄʜᴀɴɴᴇʟ :</b> <a href='https://t.me/Prime_Movies4U/153'>ᴄʟɪᴄᴋ ʜᴇʀᴇ</a>
 •────•────────•────•
 
- <b>©️ ᴘᴏᴡᴇʀᴇᴅ ʙʏ : </b> <a href='https://t.me/Prime_Botz'> ᴘʀɪᴍᴇ ʙᴏᴛᴢ</a>"""
-
+<b>©️ ᴘᴏᴡᴇʀᴇᴅ ʙʏ :</b> <a href='https://t.me/Prime_Botz'>ᴘʀɪᴍᴇ ʙᴏᴛᴢ</a>
+"""
     ALRT_TXT = """THIS IS NOT YOUR REQUEST❕PLEASE REQUEST YOURS.\nএটা আপনার রিকোয়েস্ট না এর জন্য আপনার নিজের রিকুয়েস্ট করতে হবে 😉!"""
 
     OLD_ALRT_TXT = """ʏᴏᴜ ᴀʀᴇ ᴜsɪɴɢ ᴍʏ ᴏʟᴅ ᴍᴇssᴀɢᴇs..sᴇɴᴅ ᴀ ɴᴇᴡ ʀᴇǫᴜᴇsᴛ.."""
