@@ -99,11 +99,12 @@ async def send_movie_updates(bot, file_name, caption, file_id):
 
         # নতুন ডিজাইন অনুযায়ী ক্যাপশন
         caption_message = (
-            f"📢 **#NEW_FILE_ADDED ✅**\n\n"
-            f"➤✉ **𝐓𝐈𝐓𝐋𝐄:** {title or movie_name}\n"
-            f"➤📁 **𝐋𝐀𝐍𝐆𝐔𝐀𝐆𝐄:** {language}\n"
-            f"➤🔘 **𝐐𝐔𝐀𝐋𝐈𝐓𝐘:** {quality}\n"
-            f"──────────────────────────"
+    f"🌿 <blockquote> #ɴᴇᴡ_ꜰɪʟᴇ_ᴀᴅᴅᴇᴅ ✅</blockquote>\n\n"
+    f"╭───────────────➤\n"
+    f"➤📜 **ᴛɪᴛʟᴇ :** {title or movie_name}\n"
+    f"➤🌍 **ʟᴀɴɢᴜᴀɢᴇ :** {language}\n"
+    f"➤🎞 **Qᴜᴀʟɪᴛʏ :** {quality}\n"
+    f"╰───────────────➤"
         )
 
         # রিঅ্যাকশন বাটন
