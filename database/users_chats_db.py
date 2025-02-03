@@ -8,7 +8,6 @@ mydb = client[DATABASE_NAME]
 fsubs = client['fsubs']
 class Database:
     default = SETTINGS.copy()
-
     def __init__(self):
         self.col = mydb.users
         self.grp = mydb.groups
@@ -22,8 +21,6 @@ class Database:
         self.grp_and_ids = fsubs.grp_and_ids
         self.movies_update_channel = mydb.movies_update_channel
         self.botcol = mydb.botcol
-        self.reaction_col = mydb.reaction_counts  # রিঅ্যাকশন কাউন্ট ট্র্যাক করার জন্য নতুন কোলেকশন
-
     def new_user(self, id, name):
         return dict(
             id = id,
@@ -36,45 +33,13 @@ class Database:
         )
 
     async def get_settings(self, id):
-        chat = await self.grp.find_one({'id': int(id)})
+        chat = await self.grp.find_one({'id':int(id)})
         if chat:
             return chat.get('settings', self.default)
         else:
-            await self.grp.update_one({'id': int(id)}, {'$set': {'settings': self.default}}, upsert=True)
+            await self.grp.update_one({'id': int(id)}, {'$set': {'settings': self.default}} , upsert=True)
         return self.default
 
-    # নতুন ফাংশন যুক্ত করলাম রিঅ্যাকশন কাউন্ট আপডেট করার জন্য
-    async def update_reaction_count(self, message_id, increment=True):
-        """
-        message_id এর জন্য রিঅ্যাকশন কাউন্ট আপডেট করবে।
-        :param message_id: মেসেজের ID
-        :param increment: True হলে কাউন্ট বাড়াবে, False হলে কমাবে
-        """
-        # ইউজারের রিঅ্যাকশন কাউন্ট পাওয়া যাবে বা নতুন ডকুমেন্ট তৈরি হবে
-        reaction_doc = await self.reaction_col.find_one({"message_id": message_id})
-
-        if reaction_doc:
-            # রিঅ্যাকশন কাউন্ট পাওয়া গেছে, এখন কাউন্ট বাড়ানো বা কমানো
-            new_count = reaction_doc.get("reaction_count", 0)
-            if increment:
-                new_count += 1
-            else:
-                new_count -= 1
-            
-            # নতুন কাউন্ট দিয়ে ডাটাবেস আপডেট করুন
-            await self.reaction_col.update_one(
-                {"message_id": message_id},
-                {"$set": {"reaction_count": new_count}}
-            )
-        else:
-            # যদি মেসেজটি না পাওয়া যায়, তাহলে নতুন ডকুমেন্ট ইনসার্ট করুন
-            await self.reaction_col.insert_one({
-                "message_id": message_id,
-                "reaction_count": 1 if increment else 0
-            })
-
-        print(f"Reaction count updated for message {message_id}.")
-        
     async def find_join_req(self, id):
         return bool(await self.req.find_one({'id': id}))
         
