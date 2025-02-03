@@ -142,19 +142,24 @@ async def handle_reactions(bot, query: CallbackQuery):
 
     reaction_type, message_id = data[0], int(data[1])
 
-    if message_id in reactions_data and reaction_type in reactions_data[message_id]:
-        reactions_data[message_id][reaction_type] += 1  # সংখ্যা +1 আপডেট হবে
+    if message_id in reactions_data:
+        # রিঅ্যাকশন টাইপ অনুযায়ী সংখ্যা +1 আপডেট হবে
+        if reaction_type in reactions_data[message_id]:
+            reactions_data[message_id][reaction_type] += 1
+        else:
+            reactions_data[message_id][reaction_type] = 1  # যদি নতুন রিঅ্যাকশন টাইপ হয়
 
+        # বাটন গুলি নতুন রিঅ্যাকশন কাউন্ট অনুযায়ী আপডেট
         buttons = InlineKeyboardMarkup([
             [
-                InlineKeyboardButton(f"❤️ {reactions_data[message_id]['like']}", callback_data=f"like_{message_id}"),
-                InlineKeyboardButton(f"👍 {reactions_data[message_id]['thumbs_up']}", callback_data=f"thumbs_up_{message_id}"),
-                InlineKeyboardButton(f"👎 {reactions_data[message_id]['thumbs_down']}", callback_data=f"thumbs_down_{message_id}"),
-                InlineKeyboardButton(f"🔥 {reactions_data[message_id]['fire']}", callback_data=f"fire_{message_id}")
+                InlineKeyboardButton(f"❤️ {reactions_data[message_id].get('like', 0)}", callback_data=f"like_{message_id}"),
+                InlineKeyboardButton(f"👍 {reactions_data[message_id].get('thumbs_up', 0)}", callback_data=f"thumbs_up_{message_id}"),
+                InlineKeyboardButton(f"👎 {reactions_data[message_id].get('thumbs_down', 0)}", callback_data=f"thumbs_down_{message_id}"),
+                InlineKeyboardButton(f"🔥 {reactions_data[message_id].get('fire', 0)}", callback_data=f"fire_{message_id}")
             ],
             [InlineKeyboardButton("📂 GET FILE 📂", url=f"https://t.me/{temp.U_NAME}?start=pm_mode_file_{ADMINS[0]}_{message_id}")],
             [InlineKeyboardButton("♻ HOW TO GET FILE TUTORIAL ♻", url="https://t.me/Prime_Movie_Watch_Dawnload/75")]
         ])
 
-        await query.message.edit_reply_markup(reply_markup=buttons)  # নতুন সংখ্যা দিয়ে বাটন আপডেট করা
-
+        # নতুন রিঅ্যাকশন কাউন্ট সহ বাটন আপডেট
+        await query.message.edit_reply_markup(reply_markup=buttons)
