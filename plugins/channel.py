@@ -158,10 +158,3 @@ async def handle_reactions(bot, query: CallbackQuery):
 
         await query.message.edit_reply_markup(reply_markup=buttons)  # নতুন সংখ্যা দিয়ে বাটন আপডেট করা
 
-# অ্যাসিঙ্ক্রোনাস অ্যাপ রান করা
-async def main():
-    async with Client("my_bot") as app:
-        await app.idle()
-
-import asyncio
-asyncio.run(main())  # ইভেন্ট লুপ ঠিকভাবে চালানোর জন্য
