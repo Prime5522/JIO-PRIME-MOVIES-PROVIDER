@@ -148,18 +148,26 @@ async def handle_reactions(bot, query: CallbackQuery):
             reactions_data[message_id][reaction_type] += 1
         else:
             reactions_data[message_id][reaction_type] = 1  # যদি নতুন রিঅ্যাকশন টাইপ হয়
+    else:
+        # নতুন message_id তৈরি করা
+        reactions_data[message_id] = {"like": 0, "thumbs_up": 0, "thumbs_down": 0, "fire": 0}
+        reactions_data[message_id][reaction_type] = 1
 
-        # বাটন গুলি নতুন রিঅ্যাকশন কাউন্ট অনুযায়ী আপডেট
-        buttons = InlineKeyboardMarkup([
-            [
-                InlineKeyboardButton(f"❤️ {reactions_data[message_id].get('like', 0)}", callback_data=f"like_{message_id}"),
-                InlineKeyboardButton(f"👍 {reactions_data[message_id].get('thumbs_up', 0)}", callback_data=f"thumbs_up_{message_id}"),
-                InlineKeyboardButton(f"👎 {reactions_data[message_id].get('thumbs_down', 0)}", callback_data=f"thumbs_down_{message_id}"),
-                InlineKeyboardButton(f"🔥 {reactions_data[message_id].get('fire', 0)}", callback_data=f"fire_{message_id}")
-            ],
-            [InlineKeyboardButton("📂 GET FILE 📂", url=f"https://t.me/{temp.U_NAME}?start=pm_mode_file_{ADMINS[0]}_{message_id}")],
-            [InlineKeyboardButton("♻ HOW TO GET FILE TUTORIAL ♻", url="https://t.me/Prime_Movie_Watch_Dawnload/75")]
-        ])
+    # বাটন গুলি নতুন রিঅ্যাকশন কাউন্ট অনুযায়ী আপডেট
+    buttons = InlineKeyboardMarkup([
+        [
+            InlineKeyboardButton(f"❤️ {reactions_data[message_id]['like']}", callback_data=f"like_{message_id}"),
+            InlineKeyboardButton(f"👍 {reactions_data[message_id]['thumbs_up']}", callback_data=f"thumbs_up_{message_id}"),
+            InlineKeyboardButton(f"👎 {reactions_data[message_id]['thumbs_down']}", callback_data=f"thumbs_down_{message_id}"),
+            InlineKeyboardButton(f"🔥 {reactions_data[message_id]['fire']}", callback_data=f"fire_{message_id}")
+        ],
+        [InlineKeyboardButton("📂 GET FILE 📂", url=f"https://t.me/{temp.U_NAME}?start=pm_mode_file_{ADMINS[0]}_{message_id}")],
+        [InlineKeyboardButton("♻ HOW TO GET FILE TUTORIAL ♻", url="https://t.me/Prime_Movie_Watch_Dawnload/75")]
+    ])
 
-        # নতুন রিঅ্যাকশন কাউন্ট সহ বাটন আপডেট
-        await query.message.edit_reply_markup(reply_markup=buttons)
+    # নতুন রিঅ্যাকশন কাউন্ট সহ বাটন আপডেট
+    await query.message.edit_reply_markup(reply_markup=buttons)
+    
+    # ইউজারকে জানানো যে রিঅ্যাকশন আপডেট হয়েছে
+    await query.answer("Reaction Updated!", show_alert=False)
+    
