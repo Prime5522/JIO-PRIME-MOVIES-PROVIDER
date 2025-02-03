@@ -106,6 +106,7 @@ async def send_movie_updates(bot, file_name, caption, file_id):
     f"┣⪼📣 **ʟᴀɴɢᴜᴀɢᴇ** : {language}\n"
     f"┃\n"
     f"┣⪼🎞 **Qᴜᴀʟɪᴛʏ** : {quality}\n"
+    f"┃\n"
     f"╰━━━❰ ꜱᴛᴀʏ ᴇɴᴛᴇʀᴛᴀɪɴᴇᴅ ❱━━━⊱  "
         )
 
@@ -120,8 +121,8 @@ async def send_movie_updates(bot, file_name, caption, file_id):
                 InlineKeyboardButton(f"👎 {reactions_data[message_id]['thumbs_down']}", callback_data=f"thumbs_down_{message_id}"),
                 InlineKeyboardButton(f"🔥 {reactions_data[message_id]['fire']}", callback_data=f"fire_{message_id}")
             ],
-            [InlineKeyboardButton("📂 GET FILE 📂", url=f"https://t.me/{temp.U_NAME}?start=pm_mode_file_{ADMINS[0]}_{file_id}")],
-            [InlineKeyboardButton("♻ HOW TO GET FILE TUTORIAL ♻", url="https://t.me/Prime_Movie_Watch_Dawnload/75")]
+            [InlineKeyboardButton("📂 ɢᴇᴛ ꜰɪʟᴇ 📂", url=f"https://t.me/{temp.U_NAME}?start=pm_mode_file_{ADMINS[0]}_{file_id}")],
+            [InlineKeyboardButton("♻ ʜᴏᴡ ᴛᴏ ɢᴇᴛ ꜰɪʟᴇ ᴛᴜᴛᴏʀɪᴀʟ ♻", url="https://t.me/Prime_Movie_Watch_Dawnload/75")]
         ])
 
         movie_update_channel = await db.movies_update_channel_id()
@@ -164,8 +165,8 @@ async def handle_reactions(bot, query: CallbackQuery):
             InlineKeyboardButton(f"👎 {reactions_data[message_id]['thumbs_down']}", callback_data=f"thumbs_down_{message_id}"),
             InlineKeyboardButton(f"🔥 {reactions_data[message_id]['fire']}", callback_data=f"fire_{message_id}")
         ],
-        [InlineKeyboardButton("📂 GET FILE 📂", url=f"https://t.me/{temp.U_NAME}?start=pm_mode_file_{ADMINS[0]}_{message_id}")],
-        [InlineKeyboardButton("♻ HOW TO GET FILE TUTORIAL ♻", url="https://t.me/Prime_Movie_Watch_Dawnload/75")]
+        [InlineKeyboardButton("📂 ɢᴇᴛ ꜰɪʟᴇ 📂", url=f"https://t.me/{temp.U_NAME}?start=pm_mode_file_{ADMINS[0]}_{message_id}")],
+        [InlineKeyboardButton("♻ ʜᴏᴡ ᴛᴏ ɢᴇᴛ ꜰɪʟᴇ ᴛᴜᴛᴏʀɪᴀʟ ♻", url="https://t.me/Prime_Movie_Watch_Dawnload/75")]
     ])
 
     # নতুন রিঅ্যাকশন কাউন্ট সহ বাটন আপডেট
