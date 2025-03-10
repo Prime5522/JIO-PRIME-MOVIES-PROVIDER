@@ -6,13 +6,12 @@
 
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from info import CHANNELS, MOVIE_UPDATE_CHANNEL, ADMINS , LOG_CHANNEL
+from info import CHANNELS, MOVIE_UPDATE_CHANNEL, ADMINS, LOG_CHANNEL
 from database.ia_filterdb import save_file, unpack_new_file_id
 from utils import get_poster, temp
 import re
 from database.users_chats_db import db
 
-processed_movies = set()
 media_filter = filters.document | filters.video
 
 @Client.on_message(filters.chat(CHANNELS) & media_filter)
@@ -31,8 +30,8 @@ async def get_imdb(file_name):
     imdb_file_name = await movie_name_format(file_name)
     imdb = await get_poster(imdb_file_name)
     if imdb:
-        return imdb.get('poster'), imdb.get('title'), imdb.get('genres'), imdb.get('year'), imdb.get('rating')
-    return None, None, None, None, None
+        return imdb.get('poster'), imdb.get('title'), imdb.get('genres'), imdb.get('year'), imdb.get('rating'), imdb.get('duration')
+    return None, None, None, None, None, None
     
 async def movie_name_format(file_name):
     filename = re.sub(r'http\S+', '', re.sub(r'@\w+|#\w+', '', file_name).replace('_', ' ').replace('[', '').replace(']', '').replace('(', '').replace(')', '').replace('{', '').replace('}', '').replace('.', ' ').replace('@', '').replace(':', '').replace(';', '').replace("'", '').replace('-', '').replace('!', '')).strip()
@@ -74,26 +73,19 @@ async def send_movie_updates(bot, file_name, caption, file_id):
         language = language.strip(", ") or "Not Sure"
         
         movie_name = await movie_name_format(file_name)    
-        if movie_name in processed_movies:
-            return 
-        processed_movies.add(movie_name)
-        
-        
-        poster_url, title, genres, release_date, rating = await get_imdb(movie_name)
+
+        poster_url, title, genres, release_date, rating, duration = await get_imdb(movie_name)
         
         caption_message = (
     f"╭━━━❰ #ɴᴇᴡ_ꜰɪʟᴇ_ᴀᴅᴅᴇᴅ ✅ ❱━━━⊱\n\n"
-    f"┃\n"  
-    f"┣⪼ 📜 **ᴛɪᴛʟᴇ** : {title or movie_name}\n\n"
-    f"┃\n"
-    f"┣⪼📣 **ʟᴀɴɢᴜᴀɢᴇ** : {language}\n"
-    f"┃\n"
-    f"┣⪼🎞 **Qᴜᴀʟɪᴛʏ** : {quality}\n"
-    f"┃\n"
+    f"🎬 **ᴛɪᴛʟᴇ** : {title or movie_name}\n"
+    f"🗒️ **ʀᴇʟᴇᴀsᴇ** : {release_date or 'Not Available'}\n"
+    f"⏰ **ᴅᴜʀᴀᴛɪᴏɴ** : {duration or 'Not Available'}\n"
+    f"🔊 **ʟᴀɴɢᴜᴀɢᴇ** : {language}\n"
+    f"🎥 **Qᴜᴀʟɪᴛʏ** : {quality}\n\n"
     f"╰━━━❰ ꜱᴛᴀʏ ᴇɴᴛᴇʀᴛᴀɪɴᴇᴅ ❱━━━⊱"
         )
 
-        
         movie_update_channel = await db.movies_update_channel_id()    
         
         btn = [
