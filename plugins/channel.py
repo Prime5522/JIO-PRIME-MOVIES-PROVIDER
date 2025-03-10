@@ -78,59 +78,59 @@ async def send_movie_updates(bot, file_name, caption, file_id):
         poster_url, title, genres, release_date, rating, duration = await get_imdb(movie_name)
         
         caption_message = (
-    "╔════❰ #ɴᴇᴡ_ꜰɪʟᴇ_ᴀᴅᴅᴇᴅ ✅ ❱═❍⊱❁۪۪\n"
-    "║╭━━━❰ 🎬 ꜰᴏʀ ʏᴏᴜʀ ᴇɴᴛᴇʀᴛᴀɪɴᴍᴇɴᴛ 🎭 ❱━⊱\n"
-   f"║┃🎬 ᴛɪᴛʟᴇ : {title or movie_name}\n"
-   f"║┃🗒️ ʀᴇʟᴇᴀsᴇ : {release_date or 'Unknown'}\n"
-   f"║┃⏰ ᴅᴜʀᴀᴛɪᴏɴ : {duration or 'Unknown'}\n"
-   f"║┃🔊 ʟᴀɴɢᴜᴀɢᴇ : {language}\n"
-   f"║┃🎥 Qᴜᴀʟɪᴛʏ : {quality}\n"
-    "║╰━━━━━━━━━━━━━━━━━━⊱\n"
-    "║\n"
-    "║╭━━━━❰ 📺 ᴠɪᴅᴇᴏ ǫᴜᴀʟɪᴛʏ 📺 ❱━━⊱\n"
-    "║┃  \n"
-    "║┣⪼⭕ 𝟰𝟴𝟬𝗽 👉  \n"
-    "║┃  \n"
-    "║┣⪼⭕ 𝟳𝟮𝟬𝗽 👉  \n"
-    "║┃  \n"
-    "║┣⪼⭕ 𝟭𝟬𝟴𝟬𝗽 👉  \n"
-    "║┃  \n"
-    "║╰━━━━━━━━━━━━━━━━━━⊱\n"
-    "║\n"
-    "║╭━❰ 📚 ʜᴏᴡ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴛᴜᴛᴏʀɪᴀʟ ᴠɪᴅᴇᴏ 🎥 ❱━⊱\n"
-    "║┃       <a href='https://t.me/Prime_Movie_Watch_Dawnload/75'>👉 🔴 ʜᴏᴡ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ 🔴 👈</a>  \n"
-    "║╰━━━━━━━━━━━━━━━━⊱\n"
-    "║\n"
-    "║╭━━━━❰ 🤝 ᴏғғɪᴄɪᴀʟ ᴄʜᴀɴɴᴇʟꜱ & ɢʀᴏᴜᴘꜱ 🤝 ❱━⊱\n"
-    "║┃\n"
-    "║┣⪼ ✇ ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟꜱ:\n"
-    "║┃🔹 @Prime_Movies4U\n"
-    "║┃🔹 @Prime_Botz\n"
-    "║┃\n"
-    "║┣⪼ 🎬 ᴍᴏᴠɪᴇ/ᴡᴇʙ ꜱᴇʀɪᴇꜱ ʀᴇQᴜᴇꜱᴛ ɢʀᴏᴜᴘ:\n"
-    "║┃🔗 https://t.me/Prime_Movies4U/143\n"
-    "║┃\n"
-    "║╰━━━━━━━━━━━━━━⊱\n"
-    "║\n"
-    "╚══❰ 💠 ꜱᴛᴀʏ ᴇɴᴛᴇʀᴛᴀɪɴᴇᴅ 💠 ❱═❍⊱❁۪۪"
-)
+            "╔════❰ #ɴᴇᴡ_ꜰɪʟᴇ_ᴀᴅᴅᴇᴅ ✅ ❱═❍⊱❁۪۪\n"
+            "║╭━━━❰ 🎬 ꜰᴏʀ ʏᴏᴜʀ ᴇɴᴛᴇʀᴛᴀɪɴᴍᴇɴᴛ 🎭 ❱━⊱\n"
+           f"║┃🎬 ᴛɪᴛʟᴇ : {title or movie_name}\n"
+           f"║┃🗒️ ʀᴇʟᴇᴀsᴇ : {release_date or 'Unknown'}\n"
+           f"║┃⏰ ᴅᴜʀᴀᴛɪᴏɴ : {duration or 'Unknown'}\n"
+           f"║┃🔊 ʟᴀɴɢᴜᴀɢᴇ : {language}\n"
+           f"║┃🎥 Qᴜᴀʟɪᴛʏ : {quality}\n"
+            "║╰━━━━━━━━━━━━━━━━━━⊱\n"
+            "║\n"
+            "║╭━━━━❰ 📺 ᴠɪᴅᴇᴏ ǫᴜᴀʟɪᴛʏ 📺 ❱━━⊱\n"
+            "║┃  \n"
+            "║┣⪼⭕ 𝟰𝟴𝟬𝗽 👉  \n"
+            "║┃  \n"
+            "║┣⪼⭕ 𝟳𝟮𝟬𝗽 👉  \n"
+            "║┃  \n"
+            "║┣⪼⭕ 𝟭𝟬𝟴𝟬𝗽 👉  \n"
+            "║┃  \n"
+            "║╰━━━━━━━━━━━━━━━━━━⊱\n"
+            "║\n"
+            "║╭━❰ 📚 ʜᴏᴡ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ ᴛᴜᴛᴏʀɪᴀʟ ᴠɪᴅᴇᴏ 🎥 ❱━⊱\n"
+            "║┃       <a href='https://t.me/Prime_Movie_Watch_Dawnload/75'>👉 🔴 ʜᴏᴡ ᴛᴏ ᴅᴏᴡɴʟᴏᴀᴅ 🔴 👈</a>  \n"
+            "║╰━━━━━━━━━━━━━━━━⊱\n"
+            "║\n"
+            "║╭━━━━❰ 🤝 ᴏғғɪᴄɪᴀʟ ᴄʜᴀɴɴᴇʟꜱ & ɢʀᴏᴜᴘꜱ 🤝 ❱━⊱\n"
+            "║┃\n"
+            "║┣⪼ ✇ ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟꜱ:\n"
+            "║┃🔹 @Prime_Movies4U\n"
+            "║┃🔹 @Prime_Botz\n"
+            "║┃\n"
+            "║┣⪼ 🎬 ᴍᴏᴠɪᴇ/ᴡᴇʙ ꜱᴇʀɪᴇꜱ ʀᴇQᴜᴇꜱᴛ ɢʀᴏᴜᴘ:\n"
+            "║┃🔗 https://t.me/Prime_Movies4U/143\n"
+            "║┃\n"
+            "║╰━━━━━━━━━━━━━━⊱\n"
+            "║\n"
+            "╚══❰ 💠 ꜱᴛᴀʏ ᴇɴᴛᴇʀᴛᴀɪɴᴇᴅ 💠 ❱═❍⊱❁۪۪"
+        )
 
-movie_update_channel = await db.movies_update_channel_id()
+        movie_update_channel = await db.movies_update_channel_id()
 
-btn = [
-    [InlineKeyboardButton('📂 ɢᴇᴛ ꜰɪʟᴇ 📂', url=f'https://t.me/{temp.U_NAME}?start=pm_mode_file_{ADMINS[0]}_{file_id}')],
-    [InlineKeyboardButton('♻ ʜᴏᴡ ᴛᴏ ɢᴇᴛ ꜰɪʟᴇ ᴛᴜᴛᴏʀɪᴀʟ ♻', url='https://t.me/Prime_Movie_Watch_Dawnload/75')]
-]
-reply_markup = InlineKeyboardMarkup(btn)
+        btn = [
+            [InlineKeyboardButton('📂 ɢᴇᴛ ꜰɪʟᴇ 📂', url=f'https://t.me/{temp.U_NAME}?start=pm_mode_file_{ADMINS[0]}_{file_id}')],
+            [InlineKeyboardButton('♻ ʜᴏᴡ ᴛᴏ ɢᴇᴛ ꜰɪʟᴇ ᴛᴜᴛᴏʀɪᴀʟ ♻', url='https://t.me/Prime_Movie_Watch_Dawnload/75')]
+        ]
+        reply_markup = InlineKeyboardMarkup(btn)
 
-if poster_url:
-    await bot.send_photo(movie_update_channel if movie_update_channel else MOVIE_UPDATE_CHANNEL, 
-                         photo=poster_url, caption=caption_message, reply_markup=reply_markup)
-else:
-    no_poster = "https://telegra.ph/file/88d845b4f8a024a71465d.jpg"
-    await bot.send_photo(movie_update_channel if movie_update_channel else MOVIE_UPDATE_CHANNEL, 
-                         photo=no_poster, caption=caption_message, reply_markup=reply_markup)
+        if poster_url:
+            await bot.send_photo(movie_update_channel if movie_update_channel else MOVIE_UPDATE_CHANNEL, 
+                                 photo=poster_url, caption=caption_message, reply_markup=reply_markup)
+        else:
+            no_poster = "https://telegra.ph/file/88d845b4f8a024a71465d.jpg"
+            await bot.send_photo(movie_update_channel if movie_update_channel else MOVIE_UPDATE_CHANNEL, 
+                                 photo=no_poster, caption=caption_message, reply_markup=reply_markup)
 
-except Exception as e:
-    print('Failed to send movie update. Error - ', e)
-    await bot.send_message(LOG_CHANNEL, f'Failed to send movie update. Error - {e}')
+    except Exception as e:
+        print('Failed to send movie update. Error - ', e)
+        await bot.send_message(LOG_CHANNEL, f'Failed to send movie update. Error - {e}')
