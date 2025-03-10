@@ -74,16 +74,17 @@ async def send_movie_updates(bot, file_name, caption, file_id):
         
         movie_name = await movie_name_format(file_name)    
 
-        poster_url, title, genres, release_date, rating, duration = await get_imdb(movie_name)
+        # IMDb থেকে Movie Info বের করা
+        poster_url, title, genres, release_date, rating = await get_imdb(movie_name)
         
         caption_message = (
-    f"╭━━━❰ #ɴᴇᴡ_ꜰɪʟᴇ_ᴀᴅᴅᴇᴅ ✅ ❱━━━⊱\n\n"
-    f"🎬 **ᴛɪᴛʟᴇ** : {title or movie_name}\n"
-    f"🗒️ **ʀᴇʟᴇᴀsᴇ** : {release_date or 'Not Available'}\n"
-    f"⏰ **ᴅᴜʀᴀᴛɪᴏɴ** : {duration or 'Not Available'}\n"
-    f"🔊 **ʟᴀɴɢᴜᴀɢᴇ** : {language}\n"
-    f"🎥 **Qᴜᴀʟɪᴛʏ** : {quality}\n\n"
-    f"╰━━━❰ ꜱᴛᴀʏ ᴇɴᴛᴇʀᴛᴀɪɴᴇᴅ ❱━━━⊱"
+            f"╭━━━❰ #ɴᴇᴡ_ꜰɪʟᴇ_ᴀᴅᴅᴇᴅ ✅ ❱━━━⊱\n\n"
+            f"┃🎬 **ᴛɪᴛʟᴇ** : {title or movie_name}\n"
+            f"┃🗒️ **ʀᴇʟᴇᴀsᴇ** : {release_date or 'Unknown'}\n"
+            f"┃⏰ **ᴅᴜʀᴀᴛɪᴏɴ** : {'Unknown'}\n"
+            f"┃🔊 **ʟᴀɴɢᴜᴀɢᴇ** : {language}\n"
+            f"┃🎥 **Qᴜᴀʟɪᴛʏ** : {quality}\n"
+            f"╰━━━❰ ꜱᴛᴀʏ ᴇɴᴛᴇʀᴛᴀɪɴᴇᴅ ❱━━━⊱"
         )
 
         movie_update_channel = await db.movies_update_channel_id()    
