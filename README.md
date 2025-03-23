@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://envs.sh/npU.jpg" alt="The-Movies-Probitor-Prime-Bot">
+  <img src="https://envs.sh/npUpg" alt="The-Movies-Probitor-Prime-Bot">
 </p>
 <h1 align="center">
   <a href="https://telegram.me/Prime_BOTz">Prime Auto Filter Bot</a>
